@@ -91,6 +91,8 @@ set(COMPONENT_SRCS
 "display/disp_jd9165.c"
 "display/disp_st7701.c"
 
+"display/disp_st7789_i80.c"
+
 "drivers/bme280/bme280.c"
 "drivers/bme280/bme280_if.c"
 "drivers/hwi2c.c"
@@ -114,6 +116,7 @@ set(COMPONENT_ADD_INCLUDEDIRS
 "."
 "config"
 "hwconf"
+"hwconf/lilygo/t_display_s3"
 "hwconf/trampa"
 "hwconf/trampa/bms_rb"
 "hwconf/vesc"
@@ -151,6 +154,23 @@ set(COMPONENT_ADD_INCLUDEDIRS
 
 idf_component_register(SRCS ${COMPONENT_SRCS}
     INCLUDE_DIRS ${COMPONENT_ADD_INCLUDEDIRS}
+    REQUIRES
+        esp_lcd
+        esp_ringbuf
+        esp_netif
+        esp_driver_uart
+        esp_driver_twai
+        esp_driver_usb_serial_jtag
+        esp_driver_ledc
+        esp_driver_rmt
+        esp_wifi
+        esp_adc
+        mbedtls
+        bt
+        nvs_flash
+        spi_flash
+        app_update
+        efuse
 )
 
 if(NOT DEFINED ENV{HW_SRC} AND NOT DEFINED ENV{HW_HEADER})
